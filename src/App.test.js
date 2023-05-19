@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { fireEvent, render } from "@testing-library/react";
+import MyComp from "./comp1";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("new test", () => {
+  const comp = render(<MyComp name="vamshi"></MyComp>);
+  console.log(comp.debug());
+  expect(comp.queryByText("hi")).toBeTruthy();
+  fireEvent.click(comp.getByText("hi"));
+  expect(comp.queryByText("vamshi")).toBeTruthy();
 });
